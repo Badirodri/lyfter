@@ -1,0 +1,142 @@
+1. Cree un pseudocódigo que le pida un `precio de producto` al usuario, calcule su descuento y muestre el precio final tomando en cuenta que:
+    1. Si el precio es menor a 100, el descuento es del 2%.
+    2. Si el precio es mayor o igual a 100, el descuento es del 10%.
+    3. *Ejemplos*:
+        1. 120 → 108
+        2. 40 → 39.2
+
+        ```jsx
+        1. Inicio
+        2. Definir `PrecioDeProducto`
+        3. Definir `Descuento`
+        4. Definir `PrecioFinal`
+        5. Mostar “Agregue el precio de producto”
+        6. Pedir `PrecioDeProducto`
+        7. Si (`PrecioDeProducto` >= 100) entonces
+            1. `Descuento`= `PrecioDeProducto` * 0.1
+            2. `PrecioFinal` = `PrecioDeProducto` - `Descuento`
+            3. Mostrar “El precio final es de:” `PrecioFinal`
+        8. Sino
+            1. `Descuento`= `PrecioDeProducto` * 0.02
+            2. `PrecioFinal` = `PrecioDeProducto` - `Descuento`
+            3. Mostrar “El precio final es de:” `PrecioFinal`
+        9. FinSi
+        10. Fin
+        ```
+
+
+
+2. Cree un pseudocódigo que le pida un `tiempo en segundos` al usuario y calcule si es menor o mayor a 10 minutos. Si es menor, muestre cuantos segundos faltarían para llegar a 10 minutos. Si es mayor, muestre “*Mayor*”.
+    1. *Ejemplos*:
+        1. 1040 → Mayor
+        2. 140 → 460
+        3. 599 → 1
+
+        ```jsx
+        // Conociendo que 10 min son 600 segundos
+
+        1. Inicio
+        2. Definir `TiempoEnSegundos`
+        3. Definir `TiempoRestante`
+        4. Mostrar “Agregue el tiempo en segundos a consultar”
+        5. Pedir `TiempoEnSegundos`
+        6. Si (`TiempoEnSegundos` > 600) entonces
+            1. Mostrar “Mayor”
+        7. Sino
+            1. `TiempoRestante` = 600 - `TiempoEnSegundos`
+            2. Mostrar `TiempoRestante`
+        8. FinSi
+        9. Fin
+
+        ```
+
+
+
+
+3. Cree un algoritmo que le pida un numero al usuario y muestre la suma de todos los números desde 1 hasta ese número.
+    1. 3 → 6 (1 + 2 + 3)
+    2. 5 → 15 (1 + 2 + 3 + 4 + 5)
+    3. 12 → 78 (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12)
+
+        ```jsx
+        1. Inicio
+        2. Definir `Numero`
+        3. Definir `Contador`
+        4. Definir `Suma`
+        5. `Suma` = 0
+        6. `Contador` = 1
+        7. Mostrar “Agregue un numero”
+        8. Pedir `Numero`
+        9. Si (`Numero` <= 0) entonces
+            1. Mostrar “El numero debe ser mayor a 0”
+            2. Pedir `Numero`
+        10. Sino
+        		1. Mientras (`Contador` <= `Numero`) entonces
+            2. `Suma` = `Suma` +`Contador`
+            3. `Contador` = `Contador` +1
+        		4. FinMientras
+        13. FinSi
+        14. Mostrar “La suma de todos los números desde 1 hasta ese número es:” `Suma`
+        15. Fin
+        ```
+
+
+
+
+4. Cree un diagrama de flujo que tenga un numero secreto del 1 al 10, y le pida al usuario adivinar ese número. El algoritmo no debe terminar hasta que el usuario adivine el numero.
+
+
+
+1. Cree un diagrama de flujo que pida 3 números al usuario. Si uno de esos números es 30, o si los 3 sumados dan 30, mostrar “*Correcto*”. Sino, mostrar “*incorrecto*”.
+    1. *Ejemplos*:
+        1. 23, 30, 768 → Correcto (hay un 30)
+        2. 10, 15, 5 → Correcto (10 + 15 + 5 = 30)
+        3. 35, 56, 2 → Incorrecto (no hay ningún 30, y la suma de ellos tampoco da 30)
+
+
+
+
+<aside>
+⭐ **Ejercicios Extra**
+
+1. Cree un diagrama de flujo que le pida 5 números al usuario y muestre el mayor.
+    1. *Ejemplos*:
+        1. 4, 76, 43, 6, 8 → 76
+        2. 1, 2, 3, 6, 7 → 7
+        3. 2132, 4355, 1132, 2323, 1214 → 4355
+
+
+
+2. Cree un diagrama de flujo que le pida un numero al usuario y muestre “*Fizz*” si es divisible entre 3, “*Buzz*” si es divisible entre 5, y “*FizzBuzz*” si es divisible entre ambos.
+    1. *Ejemplos*:
+        1. 33 → Fizz
+        2. 25 → Buzz
+        3. 30 → FizzBuzz
+
+
+
+3. Cree un diagrama de flujo que le pida 100 números al usuario y muestre la suma de todos.
+
+
+
+
+1. Cree un diagrama de flujo que le pida 100 números al usuario y muestre el mayor de todos.
+    1. *Ejemplos*:
+        1. 4, 76, 43, 6, 8 → 76
+
+</aside>
+
+<aside>
+💪🏽 **Ejercicios**
+
+1. Use la función `print()` para mostrar distintos textos en pantalla.
+2. Use la función `print()` para mostrar resultados de operaciones matemáticas básicas.
+    1. Por ejemplo:
+        1. 1 + 1 → 2
+        2. 90 + 430 → 520
+        3. 4 * 5 → 20
+
+
+
+
+</aside>
