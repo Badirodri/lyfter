@@ -1,0 +1,81 @@
+1. Cree un algoritmo para ver un video en Youtube. Sea lo más especifico posible.
+    1. Video YT v.1
+
+        ```jsx
+        1. Acceder a YT
+        2. Buscar el video
+        3. Seleccionar le video
+        4. Ver el video
+        5. Cerrar YT
+        ```
+
+    2. Video YT v1.1
+        - Acceder a YT
+            - Loggearme a mi perfil de YT
+                - Acceder a mi cuenta
+                - Si no tengo cuenta crear una nueva
+        - Buscar el video
+            - Desplazarse al buscador de YT
+            - Escribir el nombre del video o lo que se desea ver
+        - Seleccionar le video
+            - Darle Enter para finalizar la busqueda
+        - Ver el video
+            - Ajustar el volumen del video
+            - Seleccionar si quiero o no subtitulos en el video
+            - Observer el video
+            - Pausar el video en caso de alguna interrupcion
+        - Cerrar YT
+
+-------------------------
+
+2. Cree un algoritmo que describa su rutina diaria. Use condiciones, condiciones multiples y ciclos.
+    1. Rutina V1
+
+        ```jsx
+        1. Levantarme
+        2. Trabajar
+        3. Descansos
+        4. Almorzar
+        5. Trabajar
+        6. Cafe
+        7. Recoger a mi esposa
+        8. Ir al gym
+        9. Hacer la cena
+        10. Estudiar o leer
+        11. Dormir
+        ```
+
+    2. Rutina V.1.1
+        1. Levantarme
+        2. Si tengo mucha hambre
+            1. Comer de una vez
+        3. Sino empezar a trabajar y comer a las 8 de la mañana
+        4. Trabajar
+            1. Si hay algun escalation o ticket de prioridad
+                1. Revisarlo
+                2. Delegarlo al equipo
+            2. Sino, resolver las dudas del equipo
+                1. Mientras no haya alguna otra duda en el equipo
+                    1. Resolver las dudas
+            3. Sino, chequeo la lista de prioridades y planeo
+            4. Asistir a las reuniones en el calendario
+            5. Para cada 2 horas de trabajo
+                1. Si  hay un ticket de prioridad
+                    1. Darle el seguimiento y actualizaciones necesarias
+                2. Sino, tomar descanso de 15-20 min
+        5. Almorzar
+        6. Trabajar
+        7. Recoger a mi esposa del trabajo
+            1. Si hay mucha presa, utilizar waze
+            2. Sino, ir por el camino normal
+        8. Ir al gym
+            1. Mientras no haya terminado la retina
+                1. Seguir el plan del entrenamiento
+                    1. Hasta que no haya completado la serie de los ejercicios
+                        1. Hacer el ejercicio
+            2. Regresar del gym
+        9. Bañarme y hacer cena o pedir comida
+        10. Hasta no estar muy cansado o sea antes de las 10 de la noche
+            1.  Estudiar o leer
+        11. Orar
+        12. Dormir
