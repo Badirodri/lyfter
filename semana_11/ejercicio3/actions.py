@@ -1,10 +1,8 @@
 import csv
 
 class Student:
-  students_list=[]
-  general_mean=0
 
-  def __init__(self, name='', section='', spanish=0, english=0,social=0,science=0, mean=0):
+  def __init__(self, name, section, spanish, english, social, science, mean):
     self.name = name
     self.section = section
     self.spanish = spanish
@@ -13,41 +11,57 @@ class Student:
     self.science = science
     self.mean= mean
 
-  def add_new_student(self):
-      try:
-          self.name = input("What is the student's name: ")
-          self.section = input("What is their section: ")
-          self.spanish = number_between_100('Spanish grade: ')
-          self.english = number_between_100('English grade: ')
-          self.social = number_between_100('Social Studies grade: ')
-          self.science = number_between_100('Science grade: ')
-          mean = (self.spanish+self.english+self.social+self.science)/4
+  def show_student(self):
+    return(f'''
+           Name: {self.name}
+           Section: {self.section}
+           Spanish: {self.spanish}
+           English: {self.english}
+           Social Studies: {self.social}
+           Science: {self.science}
+           ''')
 
-          new_student = {
-              "full_name": self.name,
-              "section": self.section,
-              "spanish": self.spanish,
-              "english": self.english,
-              "social": self.social,
-              "science": self.science,
-              "mean": mean,
-          }
-          self.students_list.append(new_student)
-          print(self.students_list)
+  @classmethod
+  def transform_dic_to_obj(cls, dic):
+    return cls(
+        name=dic.get('name'),
+        section=dic.get('section'),
+        spanish=int(dic.get('spanish')),
+        english=int(dic.get('english')),
+        social=int(dic.get('social')),
+        science=int(dic.get('science')),
+        mean=float(dic.get('mean'))
+    )
+
+class StudentUtilities:
+  def __init__(self):
+    self.student_list=[]
+    self.general_mean=0
+
+  def get_general_mean(self, student):
+    return student.mean
+
+  def add_student(self, student):
+    self.student_list.append(student)
+
+  def create_new_student(self):
+      try:
+          name = input("What is the student's name: ")
+          section = input("What is their section: ")
+          spanish = self.number_between_100('Spanish grade: ')
+          english = self.number_between_100('English grade: ')
+          social = self.number_between_100('Social Studies grade: ')
+          science = self.number_between_100('Science grade: ')
+          mean = (spanish+english+social+science)/4
+
+          new_student = Student(name, section, spanish, english, social, science, mean)
+
+          self.student_list.append(new_student)
           return new_student
       except ValueError as ex:
           print(f"Invalid input, try again: {ex}")
 
-  def print_list(self):
-    for index in range(0, len(self.students_list)):
-      print(f'''
-            ----------------------
-            {index+1})
-            Info: {self.students_list[index]}
-            ''')
-
-
-def number_between_100(text):
+  def number_between_100(self, text):
     while True:
         try:
             grade = int(input(text))
@@ -58,66 +72,52 @@ def number_between_100(text):
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
 
+  def display_students(self):
+        if not self.student_list:
+            print("No students found.")
+        else:
+            print("List of Students:")
+            for student in self.student_list:
+                print(student.show_student())
 
-def show_top_3_students(students_list):
-  top_3=[]
-  sorted_students = sorted(students_list, key=lambda students_list: students_list["mean"],reverse=True)
-  if len(sorted_students) > 3:
-    for index in range(0,3):
-      name = sorted_students[index]['full_name']
-      mean = sorted_students[index]['mean']
+  def show_top_3_students(self):
+    if not self.student_list:
+            print("No students to display.")
+            return
+    else:
+        sorted_students = sorted(self.student_list, key=self.get_general_mean, reverse=True)
+        top_3 = sorted_students[:3]
+        print("Top 3 Students:")
+        for student in top_3:
+            print(student.show_student())
 
-      add_student = {
-              "Name": name,
-              "Mean": mean
-            }
-      top_3.append(add_student)
-    return (top_3)
-  else:
-    for index in range(0,len(sorted_students)):
-      name = sorted_students[index]['full_name']
-      mean = sorted_students[index]['mean']
+  def get_general_mean(self, student):
+    return student.mean
 
-      add_student = {
-              "Name": name,
-              "Mean": mean
-            }
-      top_3.append(add_student)
-  print('''
-        //////////////////////
-        Top 3 students mean:
-        =====================
-        ''')
-  for index in range(0, len(top_3)):
-    print(f'{top_3[index]['Name']}: {top_3[index]['Mean']}')
+  def calculate_general_mean(self):
+    if self.student_list==[]:
+      print('There are no students')
+      print('General Mean: 0')
+    else:
+      all_grades_sum=0
+      for student in self.student_list:
+        all_grades_sum += self.get_general_mean(student)
 
-def print_list(students_list):
-  for index in range(0, len(students_list)):
-    print(f'''
-          ----------------------
-          {index+1})
-          Name: {students_list[index]['full_name']}
-          Section: {students_list[index]['section']}
-          Average Grade: {students_list[index]['mean']}
-          Spanish: {students_list[index]['spanish']}
-          English: {students_list[index]['english']}
-          Social Studies: {students_list[index]['social']}
-          Science: {students_list[index]['science']}''')
+      self.general_mean= all_grades_sum/ (len(self.student_list))
+      print(f'''
+              General Mean: {self.general_mean:.2f}
+            ''')
+      return self.general_mean
 
-def calculate_general_mean(student_list):
-  if student_list==[]:
-    print('There are no students')
-    print('General Mean: 0')
-  else:
-    all_grades_sum=0
-    for index in range (0, len(student_list)):
-      all_grades_sum += float(student_list[index]['mean'])
+  def transform_obj_to_dic(self):
+    if self.student_list==[]:
+      print('There are not students to export, add some first')
+    else:
+      list = []
+      for student in self.student_list:
+        list.append(student.__dict__)
+      return list
 
-    general_mean= all_grades_sum/ (len(student_list))
-    print(f'''
-            General Mean: {general_mean:.2f}
-          ''')
-    return general_mean
 
 
 def write_csv_file(file_path, students_list, headers):
