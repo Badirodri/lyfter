@@ -3,60 +3,51 @@
 #     2. No se permite el uso de tipos de datos compuestos como `lists`, `dicts` o `tuples` ni módulos como `collections`.
 
 class Node:
-  data: str
-
-  def __init__(self, data, left=None, right=None):
-    self.data = data
-    self.left = left
-    self.right = right
-
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
 class BinaryTree:
-  def __init__(self,head):
-    self.head = head
+    def __init__(self, root=None):
+        self.root = root
 
-  def print_structure(self):
-    current_node = self.head
+    def insert(self, value):
+        if self.root is None:
+            self.root = Node(value)
+        else:
+            self.insert_recursive(self.root, value)
 
-    while (current_node is not None):
-      print(current_node.data)
-      current_node = current_node.left
+    def insert_recursive(self, node, value):
+        if value < node.value:
+            if node.left is None:
+                node.left = Node(value)
+            else:
+                self.insert_recursive(node.left, value)
+        else:
+            if node.right is None:
+                node.right = Node(value)
+            else:
+                self.insert_recursive(node.right, value)
 
-  def pop_left(self):
-    if self.head:
-      self.head=self.head.left
+    def print_tree(self, node=None, level=0):
+        if node is None:
+            node = self.root
 
-  def pop_right(self):
-    current_node = self.head
-    while current_node.left and current_node.left.left:
-        current_node = current_node.left
+        if node.right:
+            self.print_tree(node.right, level + 1)
 
-    current_node.left = None
+        print("    " * level + f"{node.value}")
 
-  def push_left(self,new_node):
-    new_node.left = self.head
-    self.head = new_node
+        if node.left:
+            self.print_tree(node.left, level + 1)
 
-  def push_right(self, new_node):
-    current_node = self.head
+tree = BinaryTree()
+tree.insert(5)
+tree.insert(3)
+tree.insert(7)
+tree.insert(2)
+tree.insert(4)
+tree.insert(6)
+tree.insert(8)
 
-    while current_node.left is not None:
-        current_node = current_node.left
-    current_node.left = new_node
-
-
-node_1 = Node('PRIMERO')
-
-double_queue = BinaryTree(node_1)
-
-
-print("Agregando un elemento")
-
-double_queue.push_left(Node("Soy el nuevo nodo!"))
-double_queue.push_right(Node("Soy el segundo nuevo nodo!"))
-double_queue.print_structure()
-
-print("Quitando un elemento")
-
-double_queue.pop_left()
-double_queue.pop_right()
-double_queue.print_structure()
+tree.print_tree()
