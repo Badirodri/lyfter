@@ -1,29 +1,32 @@
 def bubble_sort(list_to_sort):
-  if not isinstance(list_to_sort, list):
+    if not isinstance(list_to_sort, list):
         raise ValueError("Input must be a list")
-  else:
-    # Repetimos la iteración de la lista por todos los elementos para moverlos al final
-    for outer_index in range(0, len(list_to_sort) - 1):
-      # Usamos esta variable para revisar si hemos movido elementos
-      has_made_changes = False
-      # Le restamos uno al length para parar en el penultimo elemento
-      # Usamos el indice exterior para restar las ejecuciones de
-      # los elementos que ya estan ordenados al final
-      for index in range(0, len(list_to_sort) - 1 - outer_index):
-        # Guardamos los valores del elemento actual y el siguiente
-        current_element = list_to_sort[index]
-        next_element = list_to_sort[index + 1]
+    else:
+        # Repetimos la iteración de la lista por todos los elementos para moverlos al final
+        for outer_index in range(0, len(list_to_sort) - 1):
+            # Usamos esta variable para revisar si hemos movido elementos
+            has_made_changes = False
+            # Le restamos uno al length para parar en el penultimo elemento
+            # Usamos el indice exterior para restar las ejecuciones de
+            # los elementos que ya estan ordenados al final
+            for index in range(0, len(list_to_sort) - 1 - outer_index):
+                # Guardamos los valores del elemento actual y el siguiente
+                current_element = list_to_sort[index]
+                next_element = list_to_sort[index + 1]
 
-        # Si el actual es mayor al siguiente, intercambiamos sus posiciones
-        if current_element > next_element:
-          list_to_sort[index] = next_element
-          list_to_sort[index + 1] = current_element
-          has_made_changes = True
+                # Si el actual es mayor al siguiente, intercambiamos sus posiciones
+                if current_element > next_element:
+                    list_to_sort[index] = next_element
+                    list_to_sort[index + 1] = current_element
+                    has_made_changes = True
 
+            # Si no hemos movido elementos, la lista ya esta ordenada
+            if not has_made_changes:
+                break
 
-      # Si no hemos movido elementos, la lista ya esta ordenada
-      if not has_made_changes:
-        return
+    # Return the sorted list
+    return list_to_sort
+
 
 
 def suma_de_la_lista(la_lista):
