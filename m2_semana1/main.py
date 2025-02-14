@@ -92,7 +92,6 @@ def createNewTask():
         return jsonify(message=str(ex)), 400
 
 
-### This is not currently saving the json file, even when we are sending the data
 @app.route("/update/<taskId>", methods=["PUT"])
 def updateTask(taskId):
 
@@ -126,15 +125,15 @@ def updateTask(taskId):
         task_to_update['Status'] = new_task_status
 
         for i, task in enumerate(filtered_tasks):
-            if task["Id"] == task_to_update['Id']:
+            print(task["Id"],'test',taskId)
+            if task["Id"] == int(taskId):
                 filtered_tasks[i] = task_to_update
                 break
-        print(filtered_tasks,'test', task_to_update)
 
         with open(path, 'w') as file:
             json.dump(filtered_tasks, file, indent=4)
 
-        return jsonify(task_to_update), 200
+        return jsonify(filtered_tasks), 200
 
     except ValueError as ex:
         return jsonify(message=str(ex)), 400
