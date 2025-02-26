@@ -1,15 +1,17 @@
 from flask import Flask,request, jsonify
 import json
+import os
 
 app = Flask(__name__)
 
 statuses = ["Not Started", "In Progress", "Completed"]
-path = "/Users/juanmiguel.badilla/lyfter/m2_semana1/tasks.json"
+
+base_dir = os.path.dirname(os.path.abspath(__file__))
+path = os.path.join(base_dir, 'tasks.json')
 
 def open_task_file(path):
     with open(path, 'r') as file:
         data = json.load(file)
-        #print(data)
     return data
 
 def validate_existing_id(new_id):
@@ -49,7 +51,7 @@ def getTasks():
     return {"Tasks": filtered_tasks}
 
 
-@app.route("/add-new-task", methods=["POST"])
+@app.route("/tasks/add-new-task", methods=["POST"])
 def createNewTask():
 
     filtered_tasks = open_task_file(path)
@@ -92,7 +94,7 @@ def createNewTask():
         return jsonify(message=str(ex)), 400
 
 
-@app.route("/update/<taskId>", methods=["PUT"])
+@app.route("/tasks/update/<taskId>", methods=["PUT"])
 def updateTask(taskId):
 
     filtered_tasks = open_task_file(path)
@@ -138,7 +140,7 @@ def updateTask(taskId):
     except ValueError as ex:
         return jsonify(message=str(ex)), 400
 
-@app.route("/delete/<taskId>", methods=["DELETE"])
+@app.route("/tasks/delete/<taskId>", methods=["DELETE"])
 def deleteTasks(taskId):
 
     filtered_tasks = open_task_file(path)
