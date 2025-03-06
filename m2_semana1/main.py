@@ -94,7 +94,7 @@ def createNewTask():
         return jsonify(message=str(ex)), 400
 
 
-@app.route("/tasks/update-task-by-id/<taskId>", methods=["PUT"])
+@app.route("/tasks/<taskId>", methods=["PUT"])
 def updateTask(taskId):
 
     filtered_tasks = open_task_file(path)
@@ -140,7 +140,7 @@ def updateTask(taskId):
     except ValueError as ex:
         return jsonify(message=str(ex)), 400
 
-@app.route("/tasks/delete-task-by-id/<taskId>", methods=["DELETE"])
+@app.route("/tasks/<taskId>", methods=["DELETE"])
 def deleteTasks(taskId):
 
     filtered_tasks = open_task_file(path)
