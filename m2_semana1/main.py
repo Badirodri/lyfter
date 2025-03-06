@@ -51,7 +51,7 @@ def getTasks():
     return {"Tasks": filtered_tasks}
 
 
-@app.route("/tasks/add-new-task", methods=["POST"])
+@app.route("/tasks", methods=["POST"])
 def createNewTask():
 
     filtered_tasks = open_task_file(path)
