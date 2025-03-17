@@ -40,13 +40,13 @@
 SELECT *
 FROM productos;
 
--- Obtenga todos los productos que tengan un precio mayor a 50000
+-- -- Obtenga todos los productos que tengan un precio mayor a 50000
 
 SELECT *
 FROM productos
 WHERE precio > 5000;
 
--- Obtenga todas las compras de un mismo producto por id.
+-- -- Obtenga todas las compras de un mismo producto por id.
 
 SELECT *
 FROM productos
@@ -62,26 +62,27 @@ WHERE producto_id = 1;
 
 
 
--- Obtenga todas las compras agrupadas por producto, donde se muestre el total comprado entre todas las compras.
+-- -- Obtenga todas las compras agrupadas por producto, donde se muestre el total comprado entre todas las compras.
 
-SELECT productos.nombre, facturas.monto
-FROM productos
-JOIN detalle_facturas ON productos.id = detalle_facturas.producto_id
-JOIN facturas ON detalle_facturas.factura_id = facturas.id;
+SELECT productos.id, productos.nombre, SUM(carrito_compras.cantidad) AS total_comprado
+FROM carrito_productos
+JOIN carrito_compras ON carrito_productos.carrito_compra_id = carrito_compras.id
+JOIN productos ON carrito_productos.producto_id = productos.id
+GROUP BY productos.id, productos.nombre;
 
--- Obtenga todas las facturas realizadas por el mismo comprador
+-- -- Obtenga todas las facturas realizadas por el mismo comprador
 
 SELECT *
 FROM facturas
 WHERE correo_comprador='test@gmail.com';
 
--- Obtenga todas las facturas ordenadas por monto total de forma descendente
+-- -- Obtenga todas las facturas ordenadas por monto total de forma descendente
 
 SELECT *
 FROM facturas
 ORDER BY monto DESC;
 
--- Obtenga una sola factura por número de factura.
+-- -- Obtenga una sola factura por número de factura.
 
 SELECT *
 FROM facturas
